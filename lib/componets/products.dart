@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/page/product_details.dart';
 class Products extends StatefulWidget {
   @override
   _ProductsState createState() => _ProductsState();
@@ -18,7 +19,30 @@ class _ProductsState extends State<Products> {
       "old_price":100,
       "price":50,
     },
-
+    {
+      "name":"Red dress",
+      "picture":"assets/images/jpg/AAIPESM.jpeg",
+      "old_price":100,
+      "price":50,
+    },
+    {
+      "name":"Red dress",
+      "picture":"assets/images/jpg/AAIPESM.jpeg",
+      "old_price":100,
+      "price":50,
+    },
+    {
+      "name":"Red dress",
+      "picture":"assets/images/jpg/AAIPESM.jpeg",
+      "old_price":100,
+      "price":50,
+    },
+    {
+      "name":"Red dress",
+      "picture":"assets/images/jpg/AAIPESM.jpeg",
+      "old_price":100,
+      "price":50,
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -37,51 +61,49 @@ class _ProductsState extends State<Products> {
     );
   }
 }
-class Single_prod extends StatelessWidget {
-  final prod_name;
-  final prod_pricture;
-  final prod_old_price;
-  final prod_price;
-  Single_prod({
-    this.prod_name,
-    this.prod_pricture,
-    this.prod_old_price,
-    this.prod_price,
+  class Single_prod extends StatelessWidget {
+    final prod_name;
+    final prod_pricture;
+    final prod_old_price;
+    final prod_price;
+    Single_prod({
+      this.prod_name,
+      this.prod_pricture,
+      this.prod_old_price,
+      this.prod_price,
 
-});
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Hero(
-        tag: prod_name, child: Material(
-        child: InkWell(
-          onTap: (){},
-          child: GridTile(
-              footer: Container(
-                color: Colors.white70,
-                child: ListTile(
-                  leading: Text(prod_name,style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  title: Text(
-                    "\$$prod_price", style: TextStyle(
-                      color: Colors.red,fontWeight: FontWeight.w800
+  });
+    @override
+    Widget build(BuildContext context) {
+      return Card(
+        child: Hero(
+          tag: new Text("hero 1"),
+          child: Material(
+            child: InkWell(
+              onTap: ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context)=>new ProductDetails(
+                product_detail_name: prod_name,
+                product_detail_new_price: prod_price,
+                product_detail_old_price: prod_old_price,
+                product_detail_picture: prod_pricture,
+              ))),
+              child: GridTile(
+                footer: Container(
+                  color: Colors.white,
+                  child: new Row(children: <Widget>[
+                    Expanded(
+                     child: new Text(prod_name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),),
                     ),
-                  ),
-                  subtitle:Text(
-                    "\$$prod_old_price", style: TextStyle(
-                      color: Colors.black54,
-                      fontWeight: FontWeight.w800,
-                      decoration: TextDecoration.lineThrough
-                  ),
+                            new Text("\$${prod_price}", style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),),
+                  ],
                   ),
                 ),
+                child: Image.asset(prod_pricture,
+                 fit: BoxFit.cover,)
               ),
-              child: Image.asset(prod_pricture,
-              fit: BoxFit.cover,)),
-        ),
         ),
       ),
-    );
+        ),
+      );
+    }
   }
-}
 
